@@ -34,26 +34,6 @@ git push -u origin main
 3. Framework: **Next.js** (auto-detected)
 4. Click **Deploy**
 
-### ⚠️ Vercel Data Persistence Note
-
-Vercel serverless functions use **ephemeral filesystems** — `/tmp` is writable but resets on every cold start. This means data does not persist across deployments or cold starts on Vercel's free tier.
-
-**For persistent data on Vercel, choose one:**
-
-#### Option A: Vercel KV (Recommended — free tier available)
-1. In your Vercel project → Storage → Create KV Database
-2. Vercel auto-injects `KV_URL`, `KV_REST_API_URL`, `KV_REST_API_TOKEN` env vars
-3. Replace `src/lib/db.ts` file operations with `@vercel/kv` calls
-
-#### Option B: PlanetScale / Neon (Postgres/MySQL)
-1. Create free DB at planetscale.com or neon.tech
-2. Add `DATABASE_URL` env var in Vercel project settings
-3. Add `drizzle-orm` and swap out `db.ts` internals
-
-#### Option C: Local dev only
-For demo/testing purposes, data persists fine during `npm run dev` — it writes to `data/db.json` in your project folder.
-
----
 
 ## 📁 Architecture
 
